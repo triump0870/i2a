@@ -63,3 +63,5 @@ LOGGING = {
 }
 
 logging.config.dictConfig(LOGGING)
+
+ALLOWED_HOSTS += ['i2a.herokuapp.com']
