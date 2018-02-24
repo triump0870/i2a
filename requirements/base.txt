@@ -9,3 +9,4 @@ dj-static
 psycopg2
 gunicorn
 django-extensions
+django-mssql
