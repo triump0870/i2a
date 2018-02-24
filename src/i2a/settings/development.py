@@ -1,4 +1,4 @@
-from .base import *             # NOQA
+from .base import *  # NOQA
 import sys
 import logging.config
 
@@ -6,6 +6,7 @@ import logging.config
 DEBUG = True
 TEMPLATES[0]['OPTIONS'].update({'debug': True})
 
+# Database Settings
 # Turn off debug while imported by Celery with a workaround
 # See http://stackoverflow.com/a/4806384
 if "celery" in sys.argv[0]:

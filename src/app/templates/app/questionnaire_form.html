@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% load thumbnail %}
+
+{% block title %}{{ block.super }}Questionnaire{% endblock %}
+{% block container %}
+<div class="container">
+    <h1 class="text-primary">Questionnaire</h1>
+    <hr>
+    <p><a class="btn btn-default" href="{% url 'app_questionnaire_list' %}">Questionnaire Listing</a></p>
+    <div class="row">
+        <div class="col-md-4">
+            <label>Application Name</label>
+        </div>
+        <div class="col-md-8">
+            <form action="" method="GET">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search" id="txtSearch"/>
+                    <div class="input-group-btn">
+                        <button class="btn btn-primary" type="submit">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <hr>
+
+    {% for type in tagtypes %}
+    <div class="row">
+        <div class="col-md-4">
+            <a id="id_{{type.id}}_parent" onclick="makeActive({{type.id}})" href="#">{{type.name}}</a>
+        </div>
+        <div class="col-md-8" id="id_{{type.id}}_child" {% if type.id != 1 %} onload="makeDisable()" {% endif %}>
+            <select multiple class="form-control" id="id_{{type.id}}" onchange="selectedIds({{type.id}})">
+                {% for tag in type.tag_set.all %}
+                <option id="id_{{tag}}" value="{{tag}}" onclick="selectUnselect(this)" class="btn btn-default">
+                    {{tag}}
+                </option>
+
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    {% endfor %}
+    <span>
+        <button class="btn btn-success pull-right">Submit</button>
+        <button class="btn btn-danger pull-right">Cancel</button>
+    </span>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+
+        var select_ids = []
+        var obj_id = ''
+        function isInArray(value, array) {
+          return array.indexOf(value) > -1;
+        }
+        function remove(array, element) {
+            const index = array.indexOf(element);
+
+            if (index !== -1) {
+                array.splice(index, 1);
+            }
+        }
+        function selectUnselect(opt) {
+            const isInArray = select_ids.includes(opt.value);
+            console.log(isInArray);
+            if (isInArray === true) {
+                console.log('opt: ', opt.value);
+                remove(select_ids, opt.value);
+                console.log('new: ',select_ids)
+                selectedIds(obj_id);
+            }else{
+                select_ids.push(opt.value);
+                console.log('here: ',select_ids)
+                selectedIds(obj_id);
+            }
+        }
+        console.log(select_ids);
+        function selectedIds(obj) {
+            obj_id = obj
+            $('select#id_'+obj).val(select_ids);
+        }
+        function makeActive(obj) {
+            $('#id_'+obj+'_child').attr('display', 'block');
+        }
+
+        function makeDisable(obj) {
+            $('#id_2_child').hide();
+        }
+
+
+
+</script>
+{% endblock %}

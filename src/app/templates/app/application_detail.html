@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% load thumbnail %}
+
+{% block title %}{{ block.super }}Application Details{% endblock %}
+
+{% block container %}
+<div class="container">
+    <h1 class="text-primary">Application Details</h1>
+    <hr>
+    <p><a class="btn btn-default" href="{% url 'app_application_list' %}">Application Listing</a></p>
+    <table class="table">
+        <tr>
+            <td>name</td>
+            <td>{{ object.name }}</td>
+        </tr>
+        <tr>
+            <td>slug</td>
+            <td>{{ object.slug }}</td>
+        </tr>
+        <tr>
+            <td>created</td>
+            <td>{{ object.created }}</td>
+        </tr>
+        <tr>
+            <td>last_updated</td>
+            <td>{{ object.last_updated }}</td>
+        </tr>
+    </table>
+    <a class="btn btn-primary" href="{{object.get_update_url}}">Edit Application</a>
+
+    {% endblock %}

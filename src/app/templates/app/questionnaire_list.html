@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+{% block container %}
+<p><a class="btn btn-default" href="{% url 'app_questionnaire_list' %}">Questionnaire Listing</a></p>
+<table class="table">
+<tr>
+<td>ID</td><td>Link</td>
+    <td>description</td>
+    <td>created</td>
+    <td>last_updated</td>
+    <td>order</td>
+    <td>comment</td>
+    <td>Last updated_by</td>
+</tr>
+{% for object in object_list %}
+<tr>
+    <td>{{object.pk}}</td>
+    <td><a href="{{object.get_absolute_url}}">{{object}}</a></td>
+    <td>{{ object.description }}</td>
+    <td>{{ object.created }}</td>
+    <td>{{ object.last_updated }}</td>
+    <td>{{ object.order }}</td>
+    <td>{{ object.comment }}</td>
+    <tb>{{ object.last_user.user.email }}</tb>
+</tr>
+{% endfor %}
+</table><a class="btn btn-primary" href="{% url 'app_questionnaire_create' %}">Create new Questionnaire</a>
+{% endblock %}
