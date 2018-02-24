@@ -10,27 +10,22 @@ class ApplicationForm(forms.ModelForm):
     class Meta:
         model = Application
         fields = ['name', 'description', 'primary_owner', 'secondary_owner', 'logo', 'review_cycle', 'next_review_date']
-        next_review_date = forms.DateField(
-            widget=forms.TextInput(
-                attrs={'type': 'date'}
-            )
-        )
 
-    def __init__(self, *args, **kwargs):
-        super(ApplicationForm, self).__init__(*args, )
-        self.helper = FormHelper()
-        self.helper.form_tag = False
-        self.helper.form_class = 'form-horizontal'
-        self.helper.layout = Layout(
-            Field('name'),
-            Field('description'),
-            Field('primary_owner'),
-            Field('secondary_owner'),
-            Field('logo'),
-            Field('review_cycle'),
-            Field('next_review_date', css_class='input-small dateinput'),
-            Submit('submit', 'Submit', css_class="btn-success"),
-        )
+    # def __init__(self, *args, **kwargs):
+    #     super(ApplicationForm, self).__init__(*args, )
+    #     self.helper = FormHelper()
+    #     self.helper.form_tag = False
+    #     self.helper.form_class = 'form-horizontal'
+    #     self.helper.layout = Layout(
+    #         Field('name'),
+    #         Field('description'),
+    #         Field('primary_owner'),
+    #         Field('secondary_owner'),
+    #         Field('logo'),
+    #         Field('review_cycle'),
+    #         Field('next_review_date', css_class='input-small dateinput'),
+    #         Submit('submit', 'Submit', css_class="btn-success"),
+    #     )
 
 
 class OwnerForm(forms.ModelForm):
