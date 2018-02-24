@@ -4,6 +4,7 @@ from .forms import ApplicationForm, OwnerForm, QuestionnaireForm, TagForm, RuleF
 from profiles.models import Profile
 from braces.views import LoginRequiredMixin
 
+
 class ApplicationListView(ListView):
     model = Application
 
@@ -155,11 +156,6 @@ class TagTypeCreateView(LoginRequiredMixin, CreateView):
 class TagTypeDetailView(LoginRequiredMixin, DetailView):
     model = TagType
 
-    def get_context_data(self, **kwargs):
-        context = super(TagTypeDetailView, self).get_context_data(**kwargs)
-        context['tags'] = Tag.objects.filter(type=self.name)
-        return context
-
 
 class TagTypeUpdateView(LoginRequiredMixin, UpdateView):
     model = TagType
@@ -168,6 +164,7 @@ class TagTypeUpdateView(LoginRequiredMixin, UpdateView):
     def form_valid(self, form):
         form.instance.last_user = Profile.objects.get(user=self.request.user)
         return super(TagTypeUpdateView, self).form_valid(form)
+
 
 class AppView(LoginRequiredMixin, TemplateView):
     template_name = 'app/app_view.html'

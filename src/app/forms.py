@@ -1,6 +1,6 @@
 from django import forms
 
-from app.models import Application, Owner, Questionnaire, Tag, Rule
+from app.models import Application, Owner, Questionnaire, Tag, Rule, TagType
 from crispy_forms.bootstrap import Field
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit
@@ -53,7 +53,7 @@ class TagForm(forms.ModelForm):
 
 class TagTypeForm(forms.ModelForm):
     class Meta:
-        model = Tag
+        model = TagType
         fields = ['name', 'description']
 
 
