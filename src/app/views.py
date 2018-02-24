@@ -1,9 +1,8 @@
-from django.views.generic import DetailView, ListView, UpdateView, CreateView
+from django.views.generic import DetailView, ListView, UpdateView, CreateView, TemplateView
 from .models import Application, Owner, Questionnaire, Tag, Rule, TagType
 from .forms import ApplicationForm, OwnerForm, QuestionnaireForm, TagForm, RuleForm, TagTypeForm
 from profiles.models import Profile
 from braces.views import LoginRequiredMixin
-
 
 class ApplicationListView(ListView):
     model = Application
@@ -169,3 +168,6 @@ class TagTypeUpdateView(LoginRequiredMixin, UpdateView):
     def form_valid(self, form):
         form.instance.last_user = Profile.objects.get(user=self.request.user)
         return super(TagTypeUpdateView, self).form_valid(form)
+
+class AppView(LoginRequiredMixin, TemplateView):
+    template_name = 'app/app_view.html'

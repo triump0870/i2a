@@ -21,7 +21,7 @@
     <td>{{ object.last_updated }}</td>
     <td>{{ object.order }}</td>
     <td>{{ object.comment }}</td>
-    <tb>{{ object.last_user.user.email }}</tb>
+    <td>{{ object.last_user.user.email }}</td>
 </tr>
 {% endfor %}
 </table><a class="btn btn-primary" href="{% url 'app_questionnaire_create' %}">Create new Questionnaire</a>

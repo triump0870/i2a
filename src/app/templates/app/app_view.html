@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% load thumbnail %}
+
+{% block title %}{{ block.super }}I2A App{% endblock %}
+{% block container %}
+<div class="container">
+    <h1 class="text-primary">I2A App</h1>
+    <hr>
+    <div class="row">
+        <div class="col-md-4">
+            <a href="{% url 'app_application_list' %}">Application List</a>
+            <hr>
+            <a href="{% url 'app_rule_list' %}">Rule List</a>
+            <hr>
+            <a href="{% url 'app_tagtype_list' %}">TagType List</a>
+            <hr>
+            <a href="{% url 'app_tag_list' %}">Tag List</a>
+            <hr>
+            <a href="{% url 'app_owner_list' %}">Owner List</a>
+            <hr>
+            <a href="{% url 'app_questionnaire_list' %}">Questionnaire List</a>
+            <hr>
+        </div>
+    </div>
+</div>
+{% endblock %}

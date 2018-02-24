@@ -3,6 +3,9 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = (
+    url(r'^$', views.AppView.as_view(), name='app_view'),
+)
+urlpatterns += (
     # urls for Application
     url(r'^application/$', views.ApplicationListView.as_view(), name='app_application_list'),
     url(r'^application/create/$', views.ApplicationCreateView.as_view(), name='app_application_create'),
