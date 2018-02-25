@@ -67,7 +67,7 @@ class QuestionnaireCreateView(LoginRequiredMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         context = super(QuestionnaireCreateView, self).get_context_data(**kwargs)
-        context['tagtypes'] = TagType.objects.all().order_by('pk')
+        context['tagtypes'] = TagType.objects.all().order_by('pk')[:2]
         return context
 
     def form_valid(self, form):

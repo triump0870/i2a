@@ -84,3 +84,5 @@ LOGGING = {
 }
 
 logging.config.dictConfig(LOGGING)
+
+CRISPY_FAIL_SILENTLY = not DEBUG

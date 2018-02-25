@@ -11,19 +11,7 @@
     <p><a class="btn btn-default" href="{% url 'app_questionnaire_list' %}">Questionnaire Listing</a></p>
     <div class="row">
         <div class="col-md-4">
-            <label>Application Name</label>
-        </div>
-        <div class="col-md-8">
-            <form action="" method="GET">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search" id="txtSearch"/>
-                    <div class="input-group-btn">
-                        <button class="btn btn-primary" type="submit">
-                            <span class="glyphicon glyphicon-search"></span>
-                        </button>
-                    </div>
-                </div>
-            </form>
+            {% crispy form %}
         </div>
     </div>
     <hr>
@@ -31,9 +19,9 @@
     {% for type in tagtypes %}
     <div class="row">
         <div class="col-md-4">
-            <a id="id_{{type.id}}_parent" onclick="makeActive({{type.id}})" href="#">{{type.name}}</a>
+            <a id="id_{{type.id}}_parent" {% if type.id != 1 or type.id != 2 %} aria-disabled="true" {% endif %} onclick="makeActive({{type.id}})" href="#">{{type.name}}</a>
         </div>
-        <div class="col-md-8" id="id_{{type.id}}_child" {% if type.id != 1 %} onload="makeDisable()" {% endif %}>
+        <div class="col-md-8" id="select_div">
             <select multiple class="form-control" id="id_{{type.id}}" onchange="selectedIds({{type.id}})">
                 {% for tag in type.tag_set.all %}
                 <option id="id_{{tag}}" value="{{tag}}" onclick="selectUnselect(this)" class="btn btn-default">
@@ -44,9 +32,10 @@
             </select>
         </div>
     </div>
+    <hr>
     {% endfor %}
     <span>
-        <button class="btn btn-success pull-right">Submit</button>
+        <button class="btn btn-success pull-right" onclick="postData()">Submit</button>
         <button class="btn btn-danger pull-right">Cancel</button>
     </span>
 </div>
@@ -93,7 +82,22 @@
             $('#id_2_child').hide();
         }
 
+        function postData() {
+            var data = {};
+            data['application_name'] = $('#id_application_name').val();
+            data['tags'] = select_ids;
+            console.log('Data: ',data);
 
+        }
+
+        function disableDiv() {
+            var div = $('#select_div')
+            div.style.display = "none";
+        }
+
+        $(function() {
+            $('#select_div').hide();
+        }
 
 </script>
 {% endblock %}

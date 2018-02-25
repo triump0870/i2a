@@ -65,7 +65,7 @@ class TagType(models.Model):
     last_user = models.ForeignKey(Profile)
 
     class Meta:
-        ordering = ('-created',)
+        ordering = ('created',)
 
     def __str__(self):
         return u'%s' % self.slug
@@ -195,6 +195,8 @@ class Rule(models.Model):
 @python_2_unicode_compatible
 class Questionnaire(models.Model):
     application_name = models.ForeignKey(Application)
+    tagtype = models.ManyToManyField(TagType)
+    tags = models.CharField(max_length=500)
     description = models.CharField(max_length=255)
     order = models.IntegerField()
     comment = models.TextField()
