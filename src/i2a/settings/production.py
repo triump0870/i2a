@@ -73,4 +73,4 @@ LOGGING = {
 
 logging.config.dictConfig(LOGGING)
 
-ALLOWED_HOSTS += ['i2a.herokuapp.com']
+ALLOWED_HOSTS += ['i2a.herokuapp.com', 'ec2-34-217-31-164.us-west-2.compute.amazonaws.com']
