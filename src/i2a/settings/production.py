@@ -9,20 +9,16 @@ TEMPLATE_DEBUG = False
 
 # Must mention ALLOWED_HOSTS in production!
 # ALLOWED_HOSTS = ["i2a.com"]
-# DATABASES = {
-#     'default': {
-#         'NAME': 'dbMobileApp',
-#         'ENGINE': 'sqlserver_ado',
-#         'HOST': '108.60.209.5',  #'sql2501.shared-servers.com',
-#         'USER': 'userratnesh',
-#         'PASSWORD': 'Mobile@2018',
-#         'PORT': 1086,
-#         'OPTIONS': {
-#             'provider': 'SQLOLEDB',
-#             'use_mars': True,
-#         },
-#     }
-# }
+DATABASES = {
+    'default': {
+        'NAME': 'dbMobileApp',
+        'ENGINE': 'sqlserver_pymssql',
+        'HOST': '108.60.209.5',  #'sql2501.shared-servers.com',
+        'USER': 'userratnesh',
+        'PASSWORD': 'Mobile@2018',
+        'PORT': 1086,
+    }
+}
 # Cache the templates in memory for speed-up
 loaders = [
     ('django.template.loaders.cached.Loader', [
